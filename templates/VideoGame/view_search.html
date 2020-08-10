@@ -1,0 +1,60 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+<script>
+// Load Django Variables into Javascript
+nrItemsLoaded = {{ items_loaded }};
+const runtimes = {{ js_runtimes }};
+var itemsSelect = {{ items_selected }};
+function getCheckTail(arrInd) {
+       if (itemsSelect[arrInd] === 1) {
+             return 'checked>';
+       } else { return '>'; }
+}
+</script>
+<!-- Instructions -->
+<div  class = "container" id = "help_content">
+         <br>
+         <u1>
+         <li>Search for an individual videogame in the search bar.</li>
+         <li>Videogames will be shown in order of similiarity.</li>
+         <li>The selection of a search can be downloaded using the button at the bottom of the page.</li>
+         </u1>
+         <br>
+</div> 
+<form name = "selection" method = 'post' action = "{% url 'main:videogames_search' items_loaded=items_loaded%}"> {% csrf_token %}
+    <div class="container">
+    <br>
+    <div class="container">
+    <div class="row">
+      <div class="col s2 search_icon_button">
+             <button class="waves-effect waves-light btn-large blue darken-4" type="submit" name="action">
+                    <i class="material-icons prefix" >search</i>
+             </button>
+   </div>
+    <div class="input-field col s8" >
+      <input value="" id="search" name = "search" type="text" class="validate search_bar">
+      <label class="active search_bar" for="search">Search</label>
+    </div>
+  </div>
+</div>
+</div>
+       {% include "VideoGame/table_headers.html" %}
+       {% if not query_made %}
+             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+       {% else %}
+             {% include "VideoGame/table_entries.html" %}
+             <br>
+             <div class = "row container padded_table_entry">
+                   <div class = "col s12">
+                          <button class="waves-effect waves-light btn-large blue darken-4 redirect_bottom_button" name = "downloadFlag" value = "true">Download CSV</button>
+                   </div>
+             </div>
+             <input type="hidden" id="search_query" name="search_query" value={{search_query}}>
+       {% endif %}
+</form>
+    <script src = "{%  static 'js/addHelpCallBack.js' %}"></script>
+    <script src = "{%  static 'js/addEntries.js' %}"></script>
+    <script src = "{%  static 'js/showRuntime.js' %}"></script>
+{% endblock %}

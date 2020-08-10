@@ -1,0 +1,49 @@
+{% load static %}
+<ul class="collection entry_table_header">
+{% for board_game in entries %}
+     <li class="collection-item avatar" id ="entry_table_row">
+     <a href="{% url 'main:boardgames_individual_page' entry_id=board_game.id %}">
+      <img  src="{{board_game.thumbnail}}" class = "entry_table_thumbnail"></img></a>
+     <div class="row entry_table_title">
+            <span class="title hide-on-med-and-up">
+                  <strong class="row">{{board_game.combined_ranking_order}}. {{board_game.title}}</strong>
+            </span>
+            <span class="title hide-on-small-only">
+                  <div class="col s10">
+                       <a href="{% url 'main:boardgames_individual_page' entry_id=board_game.id %}" id = "black_link"><strong class="row">{{board_game.title}}</strong></a>
+                   </div>
+            </span>
+     </div>
+     <div class="row hide-on-small-only hide-on-large-only entry_table_med_data">
+            <div class="col s6">{{board_game.release_year}} <br>{{board_game.min_players}}-{{board_game.max_players}} players</div>
+            <div class="col s6">{{board_game.runtime}}</div>
+     </div>
+     <div class="row hide-on-med-and-down entry_table_large_data">
+            <div class="col s2">{{board_game.release_year}} <br>{{board_game.min_players}}-{{board_game.max_players}} players</div>
+            <div class="col s2">{{board_game.best_players}}</div>
+            <div class="col s2">{{board_game.min_age}}</div>
+            <div class="col s2">{{board_game.difficulty}}</div>
+            <div class="col s3">{{board_game.language_dependence}}</div>
+            <div class="col s1">{{board_game.runtime}}</div>
+     </div>
+    <span class="secondary-content right-align entry_table_header">
+            <div class="row">
+                  <div class="switch col m5 s12">
+                         <label for = "e{{forloop.counter0}}">
+                               Out
+                               <script>
+                                     var checkTail = getCheckTail({{forloop.counter0}})
+                                     document.write('<input type=\"checkbox\" name =  \"e{{forloop.counter0}}\" id = \"e{{forloop.counter0}}\" onclick=\"updateEntries(this)\"' + checkTail);
+                               </script>
+                               <span class="lever"></span>
+                               In
+                        </label>
+                  </div>
+                  <div class="col m6 hide-on-small-only"><br><a class="waves-effect waves-light btn blue darken-2 valign-wrapper" 
+                         href="{% url 'main:boardgames_individual_page' entry_id=board_game.id %}">{{board_game.combined_ranking_order}}  </a>
+                  </div>
+            </div>
+     </span>
+     </li>
+{% endfor %}
+</ul>

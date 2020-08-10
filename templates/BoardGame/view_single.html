@@ -1,0 +1,39 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+<div class = "container">
+  <br><br><br>
+  <div class="row">
+    <div class="col s12 m12 l6">
+      <div class="card">
+          <div class="card-action">
+          <a id = "single_entry_title">{{single_entry.title}} ({{single_entry.release_year}})</a>
+        </div>
+        <div class="card-image">
+          <img src="{{single_entry.image}}" id = "single_entry_image" style = "padding-bottom: 20px">
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m12 l6">
+      <table>
+        <thead><tr><th class = "single_entry_info">Min Players: </th><td>{{single_entry.min_players}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Max Players: </th><td>{{single_entry.max_players}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Aproximate Playtime: </th><td>{{single_entry.runtime}} hours</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Ranking: </th><td>{{single_entry.combined_ranking_order}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Recommended Players: </th><td>{{single_entry.best_players}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Min Age: </th><td>{{single_entry.min_age}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Language Dependency: </th><td>{{single_entry.language_dependence}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Difficulty (1-5): </th><td>{{single_entry.difficulty}}</td></tr></thead>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+        <strong class = "flow-text">Description</strong>
+        <div class="card">
+            <p class = "flow-text entry_table_header" style = "font-size: 20px">{{single_entry.summary|safe}}</p>
+        </div>
+  </div>
+  <br><br>
+</div>
+{% endblock %}

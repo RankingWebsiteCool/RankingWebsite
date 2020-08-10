@@ -1,0 +1,94 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+<script>
+var currentYear = {{first_year}} + 1
+    // Load Django Variables into Javascript
+    nrItemsLoaded = {{ items_loaded }};
+    const runtimes = {{ js_runtimes }};
+    var itemsSelect = {{ items_selected }};
+    function getCheckTail(arrInd) {
+           if (itemsSelect[arrInd] === 1) {
+                 return 'checked>';
+           } else { return '>'; }
+    }
+    var resetRow;
+    var dividerImg = "{% static 'image/CelticKnot.png' %}";
+</script>
+<!-- Instructions -->
+<div  class = "container" id = "help_content">
+          <br>
+         <u1>
+         <li>Click on the lever on the left side of each side of the card to include that videogame in your list.</li>
+        <li>You can load more videogames by clicking the button at the bottom of the page or by adjusting the figure in the url.</li>
+         <li>Click on the export button at the bottom of the page to download your selection as an excel sheet.</li>
+         </u1>
+         <br>
+</div> 
+<form method = "post" action = "{% url 'main:videogames_browse' items_loaded=items_loaded %}"> {% csrf_token %}
+  <div class="row">
+    {% for videogame in entries %}
+      <script>
+      if (currentYear != {{videogame.release_year}}) {
+      currentYear = {{videogame.release_year}}
+            resetRow = true;
+       } else {
+            resetRow = false;
+       }
+       </script>
+       <script>
+        if (resetRow) {
+            document.write(`
+            <table class="highlight"><thead>
+            <tr><th style = "padding-left: 1%; background-color: #f2f2f7">
+                <blockquote style = "border-left: 5px solid darkblue;"><h5>
+                    <img src="` + dividerImg + `" style = "margin-left: 2%; margin-bottom: -30px; height: 50px" class = "static sotic"></img>
+                    <strong style = "padding-left: 50px">` + currentYear +  `</strong>
+                </h5></blockquote>
+            </th></tr>
+            </thead></table>
+        `)}
+       </script>
+    <div class="col s12 m6 l3 entry_table_header">
+      <div class="card" style = "min-height: 380px; max-height: 480px">
+       <a href = "{% url 'main:videogames_individual_page' entry_id=videogame.id %}">
+             <div class="card-title" id = "chronology_title">
+                    <strong>{{videogame.title}}</strong>
+             </div>
+       </a>
+        <div class="card-image">
+        <a href = "{% url 'main:videogames_individual_page' entry_id=videogame.id %}"><img src="{{videogame.image}}" style = "width: 96px; margin-left: 30%; max-height: 120px;"></a>
+        <div class="switch" id = "chronology_switch">
+        <label for = "e{{forloop.counter0}}"> Out  <script>
+        var checkTail = getCheckTail({{forloop.counter0}})
+        document.write('<input type=\"checkbox\" name =  \"e{{forloop.counter0}}\" id = \"e{{forloop.counter0}}\" onclick=\"updateEntries(this)\"' + checkTail); </script>
+        <span class="lever"></span> In </label>
+      </div>
+      <p style="margin-left: 10%">{{videogame.release_month}} &#160 &#160 ({{videogame.players}})</p>
+        </div>
+        <div class="card-content">
+          <p>{{videogame.genres}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class = "row container padded_table_entry">
+             <div class = "col s12 m6">
+                   <button class="waves-effect waves-light btn-large blue darken-4 redirect_bottom_button" name = "downloadFlag" value = "true">Download CSV</button>
+              </div>
+            <div class = "col s12 m6">
+               <button class="waves-effect waves-light btn-large red darken-4 redirect_bottom_button" type="submit" name="action">Load {{batch_size}} More...</button>
+          </div>
+  </div>
+</form>
+<script src = "{%  static 'js/addEntries.js' %}"></script>
+<script src = "{%  static 'js/showRuntime.js' %}"></script>
+<script src = "{%  static 'js/addHelpCallBack.js' %}"></script>
+<script>
+if (nrItemsLoaded > {{batch_size}}) { 
+      window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+<div class = "container">
+  <br><br><br>
+  <div class="row">
+    <div class="col s12 m12 l6">
+      <div class="card">
+              <div class="card-action">
+          <a id = "single_entry_title">{{single_entry.title}} ({{single_entry.release_year}})</a>
+        </div>
+        <div class="card-image">
+          <img src="{{single_entry.image_url}}" id = "single_entry_image">
+        </div>
+        <br>
+      </div>
+    </div>
+    <div class="col s12 m12 l6">
+      <table>
+        <thead><tr><th class = "single_entry_info">Authors : </th><td>{{single_entry.authors}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Type : </th><td>{{single_entry.type}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info"># Volumes : </th><td>{{single_entry.volumes}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Ranking : </th><td>{{single_entry.combined_ranking_order}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Genres : </th><td>{{single_entry.genres_long}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Released : </th><td>{{single_entry.release_month}} {{single_entry.release_year}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Serializations : </th><td>{{single_entry.serializations}}</td></tr></thead>
+        {% if single_entry.status == 'Finished' %}
+            <thead><tr><th class = "single_entry_info">Last Issue : </th><td>{{single_entry.publish_last_month}} {{single_entry.publish_last_year}}</td></tr></thead>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+  <div class="row">
+        <strong class = "flow-text">Summary</strong>
+        <div class="card">
+            <p class = "flow-text entry_table_header" style = "font-size: 20px">{{single_entry.summary|safe}}</p>
+        </div>
+  </div>
+  <br>
+   <div class="row">
+        <strong class = "flow-text">Background</strong>
+        <div class="card">
+            <p class = "flow-text entry_table_header" style = "font-size: 20px">{{single_entry.background|safe}}</p>
+        </div>
+   </div>
+  <br><br>
+</div>
+{% endblock %}

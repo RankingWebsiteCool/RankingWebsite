@@ -1,0 +1,16 @@
+{% load static %}
+{% block content %}
+<div class="container">
+       <h1 class="center dark-blue-text">Feedback Form</h1>
+       <div class = "container">
+       	<form method = "post"> {% csrf_token %}
+       	       {{form}}
+       	       <br><br><br>
+       	       <div class = "container">
+       	       	<button class="waves-effect waves-light btn-large blue darken-4" type="submit" style = "width: 100%">Submit</button>
+       	       </div>
+       	       <br><br><br>
+       	</form>
+       </div>
+</div>
+{% endblock %}

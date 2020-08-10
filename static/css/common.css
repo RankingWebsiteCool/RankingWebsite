@@ -1,0 +1,145 @@
+/* Custom Stylesheet */
+/**
+ * Main style sheet used everywhere
+ */
+
+#single_entry_image {
+     width: 54%; 
+     margin-left: 23%;
+}
+
+#single_entry_movie_image {
+     width: 32%; 
+     margin-left: 34%;
+}
+
+.single_entry_info {
+     width: 35%;
+}
+
+#single_entry_title {
+     color: darkblue;	
+}
+
+.entry_table_header {
+     padding-left: 2%; 
+     padding-right: 2%;
+}
+
+.entry_table_thumbnail {
+     height: 86px;
+     position:absolute;
+     left: 20px;
+     max-width: 64px;
+     object-fit: cover;
+}
+
+#entry_table_row {
+     height: 100px;
+}
+
+.entry_table_title {
+     padding-left: 30px;
+     padding-right: 120px
+}
+
+.entry_table_med_data {
+     padding-left: 50px;
+     padding-right: 200px;
+}
+
+.entry_table_large_data {
+     padding-left: 50px;
+     padding-right: 260px;
+}
+
+#index_banner {
+     height: 600px; 
+     color: white;
+}
+
+.blank_column {
+     left: 10px;
+}
+
+#black_link {
+     color: black;
+}
+
+.fa {
+     color: white;
+}
+
+#home_coloured_icon {
+     color: #6299a9;
+}
+
+.home_service_buttons {
+     width: 140px;
+}
+
+.header_button_font {
+     font-size: 40px;
+     height: 70px;
+}
+
+.header_button_icon {
+     padding-left: 10%;
+}
+
+.header_button_text {
+     text-align: center;
+}
+
+.header_service_buttons {
+     width: 200px;
+}
+
+.header_help_button {
+     width: 50px;
+}
+
+.header_help_icon {
+     padding-left: 30%;
+}
+
+.header_small_show_services {
+     width: 50px;
+}
+
+#help_content {
+     display: none;
+}
+
+.redirect_bottom_button {
+     width: 100%;
+}
+
+#small_navigation {
+     display: none;
+}
+
+.padded_table_entry {
+     padding-left: 10%; 
+     padding-right: 10%;
+}
+
+#chronology_title {
+     padding-top: 10px;
+     color: darkblue;
+     text-transform: none;
+     padding-left: 4%;
+     padding-right: 4%
+}
+
+#chronology_switch {
+     margin-left: 65%;
+}
+
+.search_icon_button {
+     padding-right: 25%;
+}
+
+.search_bar {
+     padding-left: 20%;
+}

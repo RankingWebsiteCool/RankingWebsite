@@ -1,0 +1,47 @@
+{% load static %}
+<ul class="collection entry_table_header">
+{% for manga in entries %}
+     <li class="collection-item avatar" id ="entry_table_row" style = "max-height: 200px">
+     <a href="{% url 'main:mangas_individual_page' entry_id=manga.id %}"><img  src="{{manga.image_url}}" class = "entry_table_thumbnail"></img></a>
+     <div class="row entry_table_title">
+            <span class="title hide-on-med-and-up">
+                  <strong class="row">{{manga.combined_ranking_order}}. {{manga.title}}</strong>
+            </span>
+            <span class="title hide-on-small-only">
+                   <div class="col s10">
+                          <a href="{% url 'main:mangas_individual_page' entry_id=manga.id %}" id = "black_link"><strong class="row">{{manga.title}}</strong></a>
+                   </div>
+            </span>
+     </div>
+     <div class="row hide-on-small-only hide-on-large-only entry_table_med_data">
+            {{manga.release_year}}  {{manga.release_month}} | {{manga.type}}
+     </div>
+     <div class="row hide-on-med-and-down entry_table_large_data">
+            <div class="col s1">{{manga.release_year}} <br>{{manga.release_month}}</div>
+            <div class="col s1">{{manga.type}}</div>
+            <div class="col s2">{{manga.authors}}</div>
+            <div class="col s5">{{manga.genres_short}}</div>
+            <div class="col s1">{{manga.volumes}}</div>
+            <div class="col s2">{{manga.serializations}}</div>
+     </div>
+    <span class="secondary-content right-align entry_table_header" >
+            <div class="row">
+                  <div class="switch col m5 s12">
+                         <label for = "e{{forloop.counter0}}">
+                               Out
+                               <script>
+                                     var checkTail = getCheckTail({{forloop.counter0}})
+                                     document.write('<input type=\"checkbox\" name =  \"e{{forloop.counter0}}\" id = \"e{{forloop.counter0}}\" onclick=\"updateEntries(this)\"' + checkTail);
+                               </script>
+                               <span class="lever"></span>
+                               In
+                        </label>
+                  </div>
+                  <div class="col m6 hide-on-small-only"><br><a class="waves-effect waves-light btn blue darken-2 valign-wrapper" 
+                         href="{% url 'main:mangas_individual_page' entry_id=manga.id %}">{{manga.combined_ranking_order}}  </a>
+                  </div>
+            </div>
+     </span>
+     </li>
+{% endfor %}
+</ul>

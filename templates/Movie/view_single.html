@@ -1,0 +1,41 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+<div class = "container">
+  <br><br><br>
+  <div class="row">
+    <div class="col s12 m12 l6">
+      <div class="card">
+              <div class="card-action">
+          <a id = "single_entry_title">{{single_entry.title}} ({{single_entry.release_year}})</a>
+        </div>
+        <div class="card-image">
+          <img src="{{single_entry.image}}" id = "single_entry_movie_image">
+        </div>
+        <br>
+      </div>
+    </div>
+    <div class="col s12 m12 l6">
+      <table>
+        <thead><tr><th class = "single_entry_info">Director : </th><td>{{single_entry.director}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Language : </th><td>{{single_entry.language}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Runtime : </th><td>{{single_entry.runtime}} minutes</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Ranking : </th><td>{{single_entry.combined_ranking_order}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Genre : </th><td>{{single_entry.genre}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Released : </th><td>{{single_entry.release_month}} {{single_entry.release_year}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Certificate : </th><td>{{single_entry.certificate}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Country : </th><td>{{single_entry.country}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Actors : </th><td>{{single_entry.actors}}</td></tr></thead>
+      </table>
+    </div>
+  </div>
+   <div class="row">
+        <strong class = "flow-text">Plot</strong>
+        <div class="card">
+            <p class = "flow-text entry_table_header" style = "font-size: 20px">{{single_entry.plot|safe}}</p>
+        </div>
+  </div>
+  <br><br>
+</div>
+{% endblock %}

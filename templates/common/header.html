@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     {% load static %}
+     <!-- Metadata -->
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+     {% if db_table and db_table.page_title %}
+          <title>{{db_table.page_title}}</title>
+     {% else %}
+          <title>Ranking</title>
+     {% endif %}
+
+     <!-- Icons -->
+     <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
+     <link rel="icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
+
+     <!-- CSS  -->
+     <link href="{% static 'css/materialize.css' %}" rel="stylesheet" media="screen,projection"/>
+     <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+     <link href = "{% static 'tinymce/css/prism.css' %}" rel = "stylesheet">
+     <link rel="stylesheet" href="{% static 'font-awesome-4.3.0/css/font-awesome.min.css' %}">
+     <link href = "{% static 'css/materialize.icons.css' %}" rel = "stylesheet">
+     <link href = "{% static 'css/common.css' %}" rel = "stylesheet"
+
+     <!-- JS -->
+     <script src = "{%  static 'tinymce/js/prism.js' %}"></script> 
+     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+     <script src="{% static 'js/init.js' %}"></script>
+     <script src="{% static 'js/materialize.min.js' %}"></script>
+</head>
+
+<body>
+
+     {% include "common/messages.html" %}
+     {% block content %}
+     {% endblock %}
+
+     <footer class="page-footer brown darken-2">
+          <div class="footer-copyright">
+               <div class="container">
+               </div>
+          </div>
+     </footer>
+</body>
+<script>
+     function delayedImageChecker() {
+          var images = $('img')
+          for (var i = 0; i < images.length; ++i) {
+                    if (images[i].naturalWidth === 0) {
+                    let classNames = images[i].className;
+                    let classArr = classNames.split(" ");
+                    if (classArr.includes("static") === false) {
+                         images[i].src = "{%  static 'image/datBoi.jpg' %}";
+                    }
+               }
+          }
+     }
+     setTimeout(delayedImageChecker, 6000);
+     var smallNavVisible = false;
+     $("#show_small_navigation").on('click', function() {
+          if (smallNavVisible) {
+               $('#small_navigation').hide();
+          } else {
+               $('#small_navigation').show()
+          }
+          smallNavVisible = !smallNavVisible;
+     })
+</script>
+</html>

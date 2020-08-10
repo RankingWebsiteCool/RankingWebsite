@@ -1,0 +1,67 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+<div class = "container">
+  <br><br><br>
+  <div class="row">
+    <div class="col s12 m12 l6">
+      <div class="card">
+              <div class="card-action">
+          <a id = "single_entry_title">{{single_entry.title}} ({{single_entry.release_year}})</a>
+        </div>
+        <div class="card-image">
+          <img src="{{single_entry.image}}" id = "single_entry_image">
+        </div>
+              <br>
+      </div>
+    </div>
+    <div class="col s12 m12 l6">
+      <table>
+        <thead><tr><th class = "single_entry_info">Developers : </th><td>{{single_entry.developers}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Publishers : </th><td>{{single_entry.publishers}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Aprox. Playtime : </th><td>{{single_entry.runtime}} hours</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Ranking : </th><td>{{single_entry.combined_ranking_order}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Genre : </th><td>{{single_entry.genres}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Released : </th><td>{{single_entry.release_month}} {{single_entry.release_year}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Rating : </th><td>{{single_entry.rating}}</td></tr></thead>
+        <thead><tr><th class = "single_entry_info">Players : </th><td>{{single_entry.players}}</td></tr></thead>
+      </table>
+    </div>
+  </div>
+  <br><br>
+    <div class="row" id = "trailerContent">
+    <div class="col s12 m12 l12">
+      <div class="card">
+              <div class="card-action">
+          <a id = "single_entry_title">Game Trailer</a>
+        </div>
+        <div class="card-content">
+       <div class="video-container">
+<script>
+      var url = "{{single_entry.trailer_url}}";
+      if (url !== "") {
+      $.ajax(url, {
+       statusCode: {
+      404: function() {
+             $("#trailerContent").hide()
+       }}});
+       if ($("#trailerContent").is(":visible")) {
+       document.write('<iframe width="853" height="480" src=' + '{{single_entry.trailer_url}}' + ' frameborder="0" allowfullscreen id = "video" onerror = dude></iframe>');}
+      } else {
+            $("#trailerContent").hide()
+      }
+</script>
+       </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="row">
+        <strong class = "flow-text">Summary</strong>
+        <div class="card">
+            <p class = "flow-text entry_table_header" style = "font-size: 20px">{{single_entry.summary|safe}}</p>
+        </div>
+  </div>
+</div>
+{% endblock %}

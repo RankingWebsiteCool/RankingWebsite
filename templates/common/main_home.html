@@ -1,0 +1,42 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/main_home_header.html" %}
+<!-- Main Splash Image -->
+<div class="section no-pad-bot blue lighten-5" style = "background: url({% static 'image/Light_Painting.jpg' %}); background-repeat: no-repeat; background-position: center;">
+ <div class="container"  id="index-banner" style="height: 800px; color: white">
+        <div>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+         <div class = "container center" id = "main_header" style = "display: none;">
+                 <h1 class="header">Rank Everything</h1>
+                <i class="large material-icons btn-floating btn-large" style = "height: 84px; background-color: Transparent;" id = "scroll_down">expand_more</i>
+          </div>
+        </div>
+</div>
+</div>
+<!-- Linked Cards -->
+<div class="row">
+   {% for media in media_databases %}
+         <div class="col m12 l4">
+         <div class="card">
+         <div class="card-image">
+            <span class="card-title"><a class="waves-effect waves-light btn-large white" style = "color: black" href = "{% url 'main:'|add:media.slug_name|add:'_homepage' %}">
+            <i class="material-icons left">{{media.materialize_icon}}</i>{{media.card_name}}</a></span>
+            <div class = "blue lighten-5">
+                <a href = "{% url 'main:'|add:media.slug_name|add:'_homepage' %}">
+                    <img src="{% static 'image/'|add:media.source_image %}" style = "height: 270px; max-width: {{media.image_max_width}}px; margin-left: 35%; margin-top: 20px; margin-bottom: 10px">
+                </a>
+            </div>
+         </div>
+         <div class="card-content">
+            <p>{{media.db_description}}</p>
+          </div>
+          <div class="card-action">
+            <a href = "{% url 'main:'|add:media.slug_name|add:'_homepage' %}" style = "color: #6299a9">{{media.link_description}}</a>
+          </div>
+        </div>
+   </div>
+{% endfor %}
+</div>
+<script src = "{%  static 'js/delayedShowMainHeader.js' %}"></script>
+{% endblock %}

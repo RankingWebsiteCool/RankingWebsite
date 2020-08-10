@@ -1,0 +1,52 @@
+{% load static %}
+<nav class="brown darken-2">
+  <div class="nav-wrapper">
+       <a href="#!" class="brand-logo"></a>
+       <img  src="{% static 'image/Logo.png'  %}">
+       <ul class="left">
+            <li class = "home_service_buttons"><a href="{% url 'main:homepage' %}">
+                 <i class="fa fa-home style" href="{% url 'main:homepage' %}"></i></a>
+                 <a href="{% url 'main:homepage' %}" class = "header_button_text">Home</a>
+            </li>
+            <li class = "header_help_button" id = "help"><i class="fa fa-question style header_help_icon"></i></li>
+        </ul>
+       <ul class="right hide-on-med-and-down">
+            <li class = "header_service_buttons">
+                 <a href="{% url 'main:'|add:db_table.slug_name|add:'_homepage' %}">
+                      <i class="fa {{db_table.fa_icon}} style header_button_icon"></i>
+                 </a>
+                 <a href="{% url 'main:'|add:db_table.slug_name|add:'_homepage' %}" class = "header_button_text">{{db_table.card_name}}</a>
+            </li>
+                 {% for service in services %}
+                      <li class = "home_service_buttons">
+                           <a  href="{% url 'main:'|add:db_table.slug_name|add:'_'|add:service.slug_name items_loaded=20 %}">
+                                 <i class="fa {{service.icon_name|safe}} style header_button_icon"></i>
+                           </a><a href="{% url 'main:'|add:db_table.slug_name|add:'_'|add:service.slug_name items_loaded=20 %}" class = "header_button_text">{{service.short_name}}</a>
+                      </li>
+                 {% endfor %}
+            </ul>
+       <ul class="right hide-on-large-only">
+            <button class ="btn waves-effect waves-light brown darken-2 header_button_font" id = "show_small_navigation">
+                 <a><i class="material-icons">dehaze</i></a>
+            </button>
+       </ul>
+  </div>
+</nav>
+
+<div class="row hide-on-large-only" id = "small_navigation">
+  <ul class="tabs">
+       <br>
+       {% for service in services %}
+            <li class="tab col s6">
+                 <a href="{% url 'main:'|add:db_table.slug_name|add:'_'|add:service.slug_name items_loaded=20 %}" id = "home_coloured_icon">{{service.short_name}} 
+                      <i class="med material-icons header_button_font" id = "home_coloured_icon">{{service.materialize_icon}}</i>
+                 </a>
+            </li>
+       {% endfor %}
+       <li class="tab col s6">
+            <a href="{% url 'main:'|add:db_table.slug_name|add:'_homepage' %}" id = "home_coloured_icon">{{db_table.card_name}}
+                 <i class="med material-icons header_button_font" id = "home_coloured_icon">{{db_table.materialize_icon}}</i>
+            </a>
+       </li>
+  </ul>
+</div>

@@ -1,0 +1,49 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+    <script>
+      // Load Django Variables into Javascript
+      nrItemsLoaded = {{ items_loaded }};
+      const runtimes = {{ js_runtimes }};
+      var itemsSelect = {{ items_selected }};
+      function getCheckTail(arrInd) {
+             if (itemsSelect[arrInd] === 1) {
+                   return 'checked>';
+             } else { return '>'; }
+      }
+    </script>
+   <!-- Instructions -->
+    <div  class = "container" id = "help_content">
+              <br>
+             <u1>
+             <li>Click on the levers on the left to include a board game in your list. </li>
+             <li>You can load more board games by clicking the button at the bottom of the page. </li>
+             <li>You can adjust the figure in the URL and reload the page to load board games as you want up to {{total_nr_entries}}. </li>
+             <li>Click on the export button at the bottom of the page to download your selection as an excel sheet.</li>
+             </u1>
+             <br>
+    </div> 
+    <!-- Show the Table -->
+       {% include "BoardGame/table_headers.html" %}
+       <form name = "selection" method = 'post' action = "{% url 'main:boardgames_view' items_loaded=items_loaded%}"> {% csrf_token %}
+       {% include "BoardGame/table_entries.html" %}
+      <br>
+      <div class = "row container padded_table_entry">
+             <div class = "col s12 m6">
+                   <button class="waves-effect waves-light btn-large blue darken-4 redirect_bottom_button" name = "downloadFlag" value = "true">Download CSV</button>
+             </div>
+             <div class = "col s12 m6">
+                   <button class="waves-effect waves-light btn-large red darken-4 redirect_bottom_button" type="submit"  name="action">Load {{batch_size}} More</button>
+             </div>
+      </div>
+      </form>
+    <script src = "{%  static 'js/addEntries.js' %}"></script>
+    <script src = "{%  static 'js/showRuntime.js' %}"></script>
+    <script src = "{%  static 'js/addHelpCallBack.js' %}"></script>
+    <script>
+      if (nrItemsLoaded > {{batch_size}}) { 
+            window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+      }
+  </script>
+{% endblock %}

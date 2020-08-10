@@ -1,0 +1,33 @@
+{% extends "common/header.html" %}
+{% load static %}
+{% block content %}
+{% include "common/media_topbar.html" %}
+<!-- Main Splash Image -->
+<div class="section no-pad-bot blue lighten-5 home_splash_img" style = "background: url({% static 'image/Celeste.jpg' %}); background-repeat: no-repeat; background-position: center;">
+     <div class="container"  id="index_banner">
+          <br><br><br>
+          <h1 class="header center">{{db_table.page_title}} <i class="fa {{db_fa_icon}} style"></i> </h1>
+          <div class="row center" id = "title_quote">
+               <p><br></p>
+               <h5 class="header col s12 light">Make a list of the best videogames ranked by AI and then export it to Excel.</h5>
+          </div>
+          <br><br>
+     </div>
+</div>
+<!--   Icon Services Section   -->
+<div class="container">
+     <div class="row">
+          {% for service in services %}
+               <div class = "col s12 m6 l4">
+                    <div class="icon-block">
+                         <h2 class="center light-blue-text" ><a href = "{% url 'main:videogames_'|add:service.slug_name items_loaded=20 %}" >
+                         <i class="fa {{service.icon_name|safe}} help_enlarge_content" id = "home_coloured_icon"></a></i></h2>
+                         <h5 class="center"><a href = "{% url 'main:videogames_'|add:service.slug_name items_loaded=20 %}">{{service.service_name}}</a></h5>
+                         <p class="light">{{service.service_description|safe}}</p>
+                    </div>
+               </div>
+          {% endfor %}
+     </div>
+</div>
+<script src = "{%  static 'js/homeHelpCallBack.js' %}"></script>
+{% endblock %}
