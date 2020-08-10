@@ -24,7 +24,7 @@ SECRET_KEY = '!#b5ylp4#a%l(x^t_+csqvd0masjy*perrvkb+*&wqosn$!!zx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False ## Have you disabled DEBUG messages?
 
-ALLOWED_HOSTS = ['sockypoop.pythonanywhere.com', '127.0.0.1', 'testserver']
+ALLOWED_HOSTS = ['rankingwebsitecool.pythonanywhere.com', '127.0.0.1', 'testserver']
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
