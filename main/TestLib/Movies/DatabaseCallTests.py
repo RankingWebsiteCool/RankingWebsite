@@ -127,7 +127,7 @@ def checkWhetherQueryWasMade_test():
     context = {'db_table': MediaDataBases.objects.get(slug_name = 'movies')}
     request = rf.get('/movies/view/1/')
     LOG.test(not checkWhetherQueryWasMade(request, context),
-        'Valid request returned something.')
+        'Request with no query returned nothing.')
     request = rf.post('/movies/view/1/', {'search': ''})
     LOG.test(not checkWhetherQueryWasMade(request, context),
         'Empty query string returned something.')

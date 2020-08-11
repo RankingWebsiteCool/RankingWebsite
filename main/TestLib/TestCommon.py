@@ -22,7 +22,7 @@ def runAllTests(local_functions):
         if f_name[-5:] == '_test':
             total_tests += 1
             try:
-                assert(testFunction() == None)
+                assert(testFunction() is None)
                 tests_passed += 1
             except:
                 print('Test Failed! ' + f_name)
