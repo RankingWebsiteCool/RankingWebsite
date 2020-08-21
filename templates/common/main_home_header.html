@@ -1,18 +1,15 @@
 {% load static %}
 <nav class="brown darken-2">
 <div class="nav-wrapper">
-  <a href="#!" class="brand-logo"></a>
-  <img  src="{% static 'image/Logo.png'  %}">
-  <ul class="left">
-  <a href="" style = "text-align: center;">Home</a></li>
-  <li style = "width: 50px" id = "help"><i class="fa fa-home style" style = "padding-left: 30%"></i></li>
-  </ul>
-  <ul class="right hide-on-med-and-down">
+    <ul>
+  <li><img  class = "materialboxed" src="{% static 'image/Logo.png'  %}"></li>
+</ul>
+  <ul class="right hide-on-med-and-down !important">
     {% for media in media_databases %}
-          <li style = "width: 180px">
+          <li style = "width: {{button_max_width}}px">
                 <a  href="{% url 'main:'|add:media.slug_name|add:'_homepage' %}">
-                      <i class="fa {{media.fa_icon|safe}} style" style = "padding-left: 10%"></i>
-                </a><a href="{% url 'main:'|add:media.slug_name|add:'_homepage' %}" style = "text-align: center">{{media.card_name}}</a>
+                      <i class="fa {{media.fa_icon|safe}} style" style = "padding-left: 1%"></i>
+                </a><a href="{% url 'main:'|add:media.slug_name|add:'_homepage' %}" style = "text-align: right">{{media.card_name}}</a>
          </li>
     {% endfor %}
    </ul>
@@ -25,10 +22,11 @@
   <ul class="tabs">
   <br>
    {% for media in media_databases %}
-   <li class="tab col s4"><a href="{% url 'main:'|add:media.slug_name|add:'_homepage' %}" style = "color: #6299a9">{{media.card_name}} 
+   <li class="tab col s6 m4"><a href="{% url 'main:'|add:media.slug_name|add:'_homepage' %}" style = "color: #6299a9">{{media.card_name}} 
          <i class="med material-icons" style = "font-size: 40px; color: #6299a9">{{media.materialize_icon}}</i></a>
    </li>
    {% endfor %}
   </ul>
 </div>
 </nav>
+<script src = "{%  static 'js/materializedBox.js' %}"></script>

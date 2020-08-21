@@ -2,13 +2,14 @@
 <nav class="brown darken-2">
   <div class="nav-wrapper">
        <a href="#!" class="brand-logo"></a>
-       <img  src="{% static 'image/Logo.png'  %}">
+       
        <ul class="left">
             <li class = "home_service_buttons"><a href="{% url 'main:homepage' %}">
                  <i class="fa fa-home style" href="{% url 'main:homepage' %}"></i></a>
                  <a href="{% url 'main:homepage' %}" class = "header_button_text">Home</a>
             </li>
             <li class = "header_help_button" id = "help"><i class="fa fa-question style header_help_icon"></i></li>
+            <li><img  class = "materialboxed hide-on-small-only" src="{% static 'image/Logo.png'  %}"></li>
         </ul>
        <ul class="right hide-on-med-and-down">
             <li class = "header_service_buttons">

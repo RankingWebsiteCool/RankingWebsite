@@ -24,6 +24,7 @@ class MediaDataBases(models.Model):
     fa_icon          = models.CharField(max_length = 20)
     image_max_width  = models.PositiveIntegerField()
     default_id       = models.CharField(max_length = 30)
+    button_max_width = models.PositiveIntegerField()
 
 class Movie(models.Model):
     id                     = models.CharField(max_length = 11, primary_key=True)

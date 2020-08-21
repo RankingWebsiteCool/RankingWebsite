@@ -24,7 +24,7 @@
             <i class="material-icons left">{{media.materialize_icon}}</i>{{media.card_name}}</a></span>
             <div class = "blue lighten-5">
                 <a href = "{% url 'main:'|add:media.slug_name|add:'_homepage' %}">
-                    <img src="{% static 'image/'|add:media.source_image %}" style = "height: 270px; max-width: {{media.image_max_width}}px; margin-left: 35%; margin-top: 20px; margin-bottom: 10px">
+                    <img src="{% static 'image/'|add:media.source_image %}" style = "height: 270px; max-width: {{media.image_max_width}}px; margin-left: 20%; margin-top: 20px; margin-bottom: 10px">
                 </a>
             </div>
          </div>
