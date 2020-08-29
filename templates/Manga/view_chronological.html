@@ -15,6 +15,9 @@ var currentYear = {{first_year}} + 1
     }
     var resetRow;
     var dividerImg = "{% static 'image/CelticKnot.png' %}";
+    function checkImageLoaded(img) {
+       img.src = "{%  static 'image/datBoi.jpg' %}"; // This does not always work when common...
+     }
 </script>
 <!-- Instructions -->
 <div  class = "container" id = "help_content">
@@ -54,7 +57,9 @@ var currentYear = {{first_year}} + 1
       <div class="card" style = "max-height: 480px; min-height: 380px;">
         <a href = "{% url 'main:mangas_individual_page' entry_id=manga.id %}"><div class="card-title" id = "chronology_title"><strong>{{manga.title}}</strong></div></a>
         <div class="card-image">
-        <a href = "{% url 'main:mangas_individual_page' entry_id=manga.id %}"><img src="{{manga.image_url}}" style = "width: 96px; margin-left: 30%; max-height: 148px;"></a>
+        <a href = "{% url 'main:mangas_individual_page' entry_id=manga.id %}">
+            <img src="{{manga.image_url}}" style = "width: 96px; margin-left: 30%; max-height: 148px;"  onerror="checkImageLoaded(this)">
+        </a>
         <div class="switch" id = "chronology_switch">
         <label for = "e{{forloop.counter0}}"> Out  <script>
         var checkTail = getCheckTail({{forloop.counter0}})

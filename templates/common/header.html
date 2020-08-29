@@ -45,19 +45,6 @@
      </footer>
 </body>
 <script>
-     function delayedImageChecker() {
-          var images = $('img')
-          for (var i = 0; i < images.length; ++i) {
-                    if (images[i].naturalWidth === 0) {
-                    let classNames = images[i].className;
-                    let classArr = classNames.split(" ");
-                    if (classArr.includes("static") === false) {
-                         images[i].src = "{%  static 'image/datBoi.jpg' %}";
-                    }
-               }
-          }
-     }
-     setTimeout(delayedImageChecker, 6000);
      var smallNavVisible = false;
      $("#show_small_navigation").on('click', function() {
           if (smallNavVisible) {

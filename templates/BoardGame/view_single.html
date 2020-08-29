@@ -2,6 +2,11 @@
 {% load static %}
 {% block content %}
 {% include "common/media_topbar.html" %}
+<script >
+    function checkImageLoaded(img) {
+       img.src = "{%  static 'image/datBoi.jpg' %}"; // This does not always work when common...
+     }
+</script>
 <div class = "container">
   <br><br><br>
   <div class="row">
@@ -11,7 +16,7 @@
           <a id = "single_entry_title">{{single_entry.title}} ({{single_entry.release_year}})</a>
         </div>
         <div class="card-image">
-          <img src="{{single_entry.image}}" id = "single_entry_image" style = "padding-bottom: 20px">
+          <img src="{{single_entry.image}}" id = "single_entry_image" style = "padding-bottom: 20px" onerror="checkImageLoaded(this)">
         </div>
       </div>
     </div>

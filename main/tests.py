@@ -1,7 +1,7 @@
 
 if __name__ == "__main__":
     import sys
-    sys.path[0] = 'D:/Websites/RankingWebsite'
+    sys.path[0] = 'D:/Websites/RankingWebsiteCool'
 
     from main.TestLib.TestCommon import *
 

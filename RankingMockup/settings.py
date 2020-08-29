@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!#b5ylp4#a%l(x^t_+csqvd0masjy*perrvkb+*&wqosn$!!zx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False ## Have you disabled DEBUG messages?
+DEBUG = True ## Have you disabled DEBUG messages?
 
 ALLOWED_HOSTS = ['rankingwebsitecool.pythonanywhere.com', '127.0.0.1', 'testserver']
 

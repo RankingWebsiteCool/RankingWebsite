@@ -1,8 +1,13 @@
 {% load static %}
+<script >
+    function checkImageLoaded(img) {
+       img.src = "{%  static 'image/datBoi.jpg' %}"; // This does not always work when common...
+     }
+</script>
 <ul class="collection entry_table_header">
 {% for manga in entries %}
      <li class="collection-item avatar" id ="entry_table_row" style = "max-height: 200px">
-     <a href="{% url 'main:mangas_individual_page' entry_id=manga.id %}"><img  src="{{manga.image_url}}?1" class = "entry_table_thumbnail"></img></a>
+     <a href="{% url 'main:mangas_individual_page' entry_id=manga.id %}"><img  src="{{manga.image_url}}?1" class = "entry_table_thumbnail" onerror="checkImageLoaded(this)"></img></a>
      <div class="row entry_table_title">
             <span class="title hide-on-med-and-up">
                   <strong class="row">{{manga.combined_ranking_order}}. {{manga.title}}</strong>

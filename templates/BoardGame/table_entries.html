@@ -1,9 +1,14 @@
 {% load static %}
+<script >
+    function checkImageLoaded(img) {
+       img.src = "{%  static 'image/datBoi.jpg' %}"; // This does not always work when common...
+     }
+</script>
 <ul class="collection entry_table_header">
 {% for board_game in entries %}
      <li class="collection-item avatar" id ="entry_table_row">
      <a href="{% url 'main:boardgames_individual_page' entry_id=board_game.id %}">
-      <img  src="{{board_game.thumbnail}}" class = "entry_table_thumbnail"></img></a>
+      <img  src="{{board_game.thumbnail}}" class = "entry_table_thumbnail" onerror="checkImageLoaded(this)"></img></a>
      <div class="row entry_table_title">
             <span class="title hide-on-med-and-up">
                   <strong class="row">{{board_game.combined_ranking_order}}. {{board_game.title}}</strong>

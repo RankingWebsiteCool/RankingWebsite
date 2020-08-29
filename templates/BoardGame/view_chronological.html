@@ -15,6 +15,9 @@ var currentYear = {{first_year}} + 1
     }
     var resetRow;
     var dividerImg = "{% static 'image/CelticKnot.png' %}";
+    function checkImageLoaded(img) {
+       img.src = "{%  static 'image/datBoi.jpg' %}"; // This does not always work when common...
+     }
 </script>
 <!-- Instructions -->
 <div  class = "container" id = "help_content">
@@ -57,7 +60,7 @@ var currentYear = {{first_year}} + 1
         </a>
         <div class="card-image">
         <a href = "{% url 'main:boardgames_individual_page' entry_id=board_game.id %}">
-               <img src="{{board_game.image}}" style = "max-width: 96px; margin-left: 30%; max-height: 100px;">
+               <img src="{{board_game.image}}" style = "max-width: 96px; margin-left: 30%; max-height: 100px;"  onerror="checkImageLoaded(this)">
         </a>
         <div class="switch" id = "chronology_switch">
         <label for = "e{{forloop.counter0}}"> Out  <script>
